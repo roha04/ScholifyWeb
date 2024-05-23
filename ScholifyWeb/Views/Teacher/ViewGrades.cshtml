@@ -1,0 +1,43 @@
+﻿@model List<StudentGradesViewModel>
+
+<h2>Усі оцінки</h2>
+
+@if (Model.Any()) // Check if there are any students
+{
+    <form method="post" asp-action="SaveGrades">
+        <input type="hidden" name="classId" value="@ViewBag.ClassId" />
+        <input type="hidden" name="subject" value="@ViewBag.Subject" />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ім'я учня</th>
+                    @foreach (var date in Model.First().GradesByDate.Keys) // Now safe to call First()
+                    {
+                        <th>@date.ToString("yyyy-MM-dd")</th>
+                    }
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.StudentName</td>
+                        @foreach (var grade in student.GradesByDate)
+                        {
+                            <td>
+                                <input type="text" name="grades[@student.StudentId][@grade.Key.ToString("yyyy-MM-dd")]" value="@grade.Value" />
+                            </td>
+                        }
+                        <td><button type="submit" class="btn btn-primary">Зберегти</button></td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </form>
+}
+else
+{
+    <p>Немає доступних оцінок.</p>
+}

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<ScholifyWeb.Models.Announcement>
+
+<h2>Оголошення</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Вміст</th>
+            <th>Клас</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var announcement in Model)
+        {
+            <tr>
+                <td>@announcement.Date.ToString("yyyy-MM-dd")</td>
+                <td>@announcement.Content</td>
+                <td>@(announcement.Class?.ClassName ?? "No Class")</td> 
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddAnnouncement")" class="btn btn-primary">Додати</a>

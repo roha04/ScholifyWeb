@@ -1,0 +1,27 @@
+﻿@model List<ScholifyWeb.Models.Grade>
+
+
+
+<h2>Оцінки</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Дитина</th>
+            <th>Дата</th>
+            <th>Предмет</th>
+            <th>Оцінка</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in Model)
+        {
+            <tr>
+                <td>@grade.Student.User.FirstName @grade.Student.User.LastName</td>
+                <td>@grade.Schedule.Date.ToString("yyyy-MM-dd")</td>
+                <td>@grade.Schedule.Subject</td>
+                <td>@grade.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>

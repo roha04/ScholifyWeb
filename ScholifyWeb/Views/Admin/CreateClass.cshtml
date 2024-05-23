@@ -1,0 +1,109 @@
+﻿@model ScholifyWeb.Models.CreateClassViewModel
+
+<h2>Створення класу</h2>
+
+<form asp-action="CreateClassAndStudents" method="post">
+    <div>
+        <label asp-for="ClassName" class="form-label">Назва класу</label>
+        <input asp-for="ClassName" class="form-control" required />
+    </div>
+    <div>
+        <label asp-for="TeacherId" class="form-label">Вчитель</label>
+        <select asp-for="TeacherId" class="form-control" asp-items="ViewBag.Teachers"></select>
+        <span asp-validation-for="TeacherId" class="text-danger"></span>
+    </div>
+
+    <div id="studentForms">
+        <div class="student-form">
+            <h4>Новий учень</h4>
+            <div>
+                <label>Ім'я користувача</label>
+                <input type="text" name="Students[0].UserName" class="form-control" />
+            </div>
+            <div>
+                <label>Ім'я</label>
+                <input type="text" name="Students[0].FirstName" class="form-control" />
+            </div>
+            <div>
+                <label>Прізвище</label>
+                <input type="text" name="Students[0].LastName" class="form-control" />
+            </div>
+            <div>
+                <label>Електронна пошта</label>
+                <input type="email" name="Students[0].Email" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+    <button type="button" onclick="addStudentForm()" class="btn btn-secondary">Додати ще одного учня</button>
+    <button type="submit" class="btn btn-primary">Створити клас</button>
+</form>
+
+<script>
+    function addStudentForm() {
+        var container = document.getElementById("studentForms");
+        var forms = container.getElementsByClassName("student-form");
+        var newForm = forms[0].cloneNode(true);
+        var formIndex = forms.length;
+        newForm.querySelectorAll("input").forEach(input => {
+            input.name = input.name.replace(/\[\d+\]/, "[" + formIndex + "]");
+            input.value = "";
+        });
+        container.appendChild(newForm);
+    }
+</script>
+
+<style>
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        width: calc(100% - 40px);
+        max-width: 500px;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: calc(50% - 10px); /* Adjusted width for side-by-side layout */
+        transition: background-color 0.3s;
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+        button:first-of-type {
+            margin-right: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>

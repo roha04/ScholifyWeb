@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ScholifyWeb.Models.Announcement>
+
+<h2>Оголошення</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Вміст</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var announcement in Model)
+        {
+            <tr>
+                <td>@announcement.Date.ToString("yyyy-MM-dd")</td>
+                <td>@announcement.Content</td>
+            </tr>
+        }
+    </tbody>
+</table>

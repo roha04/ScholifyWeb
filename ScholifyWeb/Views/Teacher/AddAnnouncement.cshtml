@@ -1,0 +1,38 @@
+﻿@model ScholifyWeb.Models.Announcement
+
+<h2>Додати оголошення</h2>
+
+@{
+    var selectList = ViewBag.ClassId as SelectList; 
+}
+
+@using (Html.BeginForm("AddAnnouncement", "Teacher", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        <label for="ClassId" class="control-label">Клас:</label>
+        @if (selectList != null && selectList.Any())
+        {
+            @Html.DropDownListFor(model => model.ClassId, selectList, new { @class = "form-control" })
+        }
+        else
+        {
+            <p>Немає доступних класів. Переконайтеся, що Вам додали класи, або зверніться до адміністратора.</p>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="Date" class="control-label">Дата:</label>
+        @Html.TextBoxFor(model => model.Date, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <div class="form-group">
+        <label for="Content" class="control-label">Вміст:</label>
+        @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Зберегти" class="btn btn-success" />
+        </div>
+    </div>
+}

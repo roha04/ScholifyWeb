@@ -1,0 +1,88 @@
+﻿@model ScholifyWeb.Models.User
+
+
+
+<h2>Редагування користувача</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <div>
+        <label>Ім'я користувача</label>
+        <input type="text" name="UserName" value="@Model.UserName" required />
+    </div>
+    <div>
+        <label>Новий пароль (залиште порожнім, щоб зберегти поточний)</label>
+        <input type="password" name="newPassword" />
+    </div>
+    <div>
+        <label>Електронна пошта</label>
+        <input type="email" name="Email" value="@Model.Email" required />
+    </div>
+    <div>
+        <label>Ім'я</label>
+        <input type="text" name="FirstName" value="@Model.FirstName" required />
+    </div>
+    <div>
+        <label>Прізвище</label>
+        <input type="text" name="LastName" value="@Model.LastName" required />
+    </div>
+    <div>
+        <label>Роль</label>
+        <select name="Role" value="@Model.Role" required>
+            <option value="Admin">Адмін</option>
+            <option value="Teacher">Вчитель</option>
+            <option value="Student">Учень</option>
+            <option value="Parent">Батько</option>
+        </select>
+    </div>
+    <input type="hidden" asp-for="Password" />
+    <button type="submit">Оновити</button>
+</form>
+<style>
+    form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        width: calc(100% - 40px);
+        max-width: 500px;
+    }
+
+    div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+</style>

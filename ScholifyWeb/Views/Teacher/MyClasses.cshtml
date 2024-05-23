@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ScholifyWeb.Models.Class>
+
+<h2>Класи</h2>
+
+<div class="class-links">
+    @foreach (var cls in Model)
+    {
+        <div class="class-link">
+            <li>
+                <a>@cls.ClassName</a>
+                <a class="button-primary" href="@Url.Action("CreateSchedule", "Teacher", new { classId = cls.ClassId })">Додати розклад</a>
+                <a class="button-secondary" href="@Url.Action("Schedules", "Teacher", new { classId = cls.ClassId })">Переглянути</a>
+            </li>
+        </div>
+    }
+</div>
+
+<style>
+    .class-links {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    }
+
+    .class-link {
+        flex: 0 0 auto;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        max-width: calc(50% - 20px); /* Adjust as needed to fit two items per row */
+    }
+
+    .class-link li {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .class-link a {
+        text-decoration: none;
+        color: #333;
+        margin-right: 10px;
+    }
+
+    .class-link a.button-primary {
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .class-link a.button-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .class-link a.button-secondary {
+        padding: 8px 12px;
+        background-color: #6c757d;
+        color: white;
+        border-radius: 5px;
+    }
+
+    .class-link a.button-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ScholifyWeb.Models.User>
+
+<h2>Список користувачів</h2>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Ім'я користувача</th>
+                <th>Електронна адреса</th>
+                <th>Роль</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr id="user-@user.UserId">
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Admin", new { id = user.UserId })" class="btn btn-warning">Редагувати</a>
+                        <form asp-action="DeleteConfirmed" asp-route-id="@user.UserId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="/Admin/Create">Додати користувача</a>
+<a href="@Url.Action("ViewClasses", "Admin")">Переглянути всі класи</a>
+
+<style>
+    .table-container {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-top: 20px;
+        border: 1px solid #ccc;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background-color: #f8f8f8;
+        z-index: 2;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        text-decoration: none;
+        color: white;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+        .btn-warning:hover, .btn-danger:hover {
+            opacity: 0.9;
+        }
+
+    .btn + .btn {
+        margin-left: 8px;
+    }
+</style>
