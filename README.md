@@ -24,7 +24,7 @@
 
 ## Аналіз подібних аплікацій:
 
-![Alt text](https://github.com/roha04/ScholifyWeb/blob/63bf7050fd19a6479ad8346ee700181dfea773b2/Artefacts/PraxiSchool.png)
+![Alt text](https://github.com/roha04/ScholifyWeb/blob/20aa5359426a6f9fe143b90bcd0e4bed83cc9c36/Artefacts/SimilarApplicationsLogos/PraxiSchool.png)
 
 
 ### Переваги:
@@ -38,7 +38,7 @@
 - Складно знаходити необхідні функції через багато вкладок.
 - Застарілий дизайн.
 
-![Alt text](https://github.com/roha04/ScholifyWeb/blob/32c0def393c1fd5bc4f716c9e39b590d6f247afa/Artefacts/FactsEdu.png)
+![Alt text](https://github.com/roha04/ScholifyWeb/blob/20aa5359426a6f9fe143b90bcd0e4bed83cc9c36/Artefacts/SimilarApplicationsLogos/FactsEdu.png)
 
 ### Переваги:
 - Простий у використанні для отримання інформації про дітей та контактування з вчителями.
